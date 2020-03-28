@@ -60,3 +60,22 @@ plot_moving_average(data.Passengers, 30)
 plot_moving_average(data.Passengers, 90, plot_intervals=True)
 
 
+# Exponential Smoothing
+def exponential_smoothing(series, alpha):
+    result = [series[0]] # first value is same as  series
+    for n in range(1, len(series)):
+        result.append(alpha * series[n] + (1 - alpha) * result[n-1])
+    return result
+
+def plot_exponential_smoothing(series, alphas):
+    plt.figure(figsize=(17,8))
+    for alpha in alphas:
+        plt.plot(exponential_smoothing(series, alpha), label="Alpha {}".format(alpha))
+    plt.plot(series.values, "c", label="Actual")
+    plt.legend(loc="best")
+    plt.axis('tight')
+    plt.title("Exponential Smoothing")
+    plt.grid(True)
+    plt.show()
+
+plot_exponential_smoothing(data.Passengers, [0.05, 0.3, 0.1])
