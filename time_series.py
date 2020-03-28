@@ -19,3 +19,11 @@ DATA_PATH = 'SeaPlaneTravel.csv'
 data = pd.read_csv(DATA_PATH)
 print(data.head(10))
 
+# Exploratory Data Analysis
+plt.figure(figsize=(17, 8))
+plt.plot(data.Passengers)
+plt.title('Passengers Traffic')
+plt.ylabel('Number of passengers')
+plt.xlabel('day')
+plt.grid(False)
+plt.show()
